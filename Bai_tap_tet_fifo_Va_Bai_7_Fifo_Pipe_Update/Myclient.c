@@ -25,17 +25,19 @@ void Content_to_server(char header[200], char data[100])
 
 void Send_data_to_Server(char header[200])
 {
+    int anti_block;
     int byte_send = 0;
     char data[100] = {0};
     printf("Data to server: ");
+    scanf("%d\n", &anti_block);
+    //scanf("%s", data);
+    fgets(data, 100, stdin);
     fflush(stdin);
-    scanf("%s", data);
-    //fgets(data, 100, stdin);
     int numb = strlen(data);
     byte_send = (strlen(header) + strlen(data));
     if(byte_send < BYTE_NUMBER) {
-        for(int i = strlen(data); i < (BYTE_NUMBER - strlen(header) -  1); i++){
-            if(i == numb){
+        for(int i = (strlen(data) - 1); i < (BYTE_NUMBER - strlen(header) -  1); i++){
+            if(data[i] == '\n'){
                 data[i] = ':';
             }else{
                 data[i] = '*';
