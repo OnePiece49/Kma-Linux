@@ -36,7 +36,7 @@ void check_block_signal(sigset_t *sigset)
     }
 }
 
-
+/* Không hiểu sao sigpending() chạy không đúng */
 void check_block_signal_ver2()
 {
     sigset_t sigset;

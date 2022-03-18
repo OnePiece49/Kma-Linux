@@ -16,6 +16,7 @@ void func()
 int main()
 {
     pid_t child_pid = fork();
+    
     if(child_pid == 0) {
         printf("I/m Process child %d\n", getpid());
         system("date");

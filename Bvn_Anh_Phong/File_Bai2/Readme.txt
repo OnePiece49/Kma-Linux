@@ -10,6 +10,26 @@
     write(fd3, "Gidday", 6);
 
 
+                    /*********************** ĐÁP ÁN BÀI 2 ***********************/    
+    fd1 = open(file, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+        --> Tạo file với các cờ O_TRUNC nêu ở dưới và cấp quyền đọc ghi cho file qua cờ S_IRUSR(cờ đọc)) và S_IWUSR(cờ ghi).
+    fd3 = open(file, O_RDWR);
+        --> Mở file với phiên làm việc với quyền đọc ghi cho file đã tạo
+        --> Chú ý: phiên làm việc là được đọc ghi, nhưng quyền cấp cho file không có đọc read và write thì cũng ko đọc ghi data được
+    write(fd1, "Hello,", 6);
+        --> Vì trong cùng một Process nên vẫn ghi data vào cuối file, và file chưa có dữ liệu nào nên data là "Hello"
+    write(fd3, "world", 6);
+        --> Ghi chèn bắt đầu từ đầu file, "Hello" bị ghi chèn bời "world", nên data trong file là "world".
+    lseek(fd3, 0, SEEK_SET);
+        --> Chuyển con trỏ trong file với fd3 về vị trí đầu tiên.
+    write(fd1, "HELLO,", 6);
+        -->Vì trong cùng một Process nên vẫn ghi data vào cuối file ứng với fd1, nên data trong file là "worldHello"
+    write(fd3, "Gidday", 6);
+        --> Vì con trỏ lúc này với fd3 ở vị trí đầu file nên nó sẽ ghi chèn lên "world" và data sẽ là "GiddayHello"
+
+        --> Cuối cùng data trong file là "GiddayHello"
+
+
 Chú ý 1: Khi mới tạo file và kết hợp luôn cờ O_TRUNC, thì file sẽ có quyền -r--r-x--- 
         --> Không có quyền write
     --> Để khắc phục vấn đề này, ta phải tạo FILE trước với không sử dụng cở O_TRUNC, rồi mở file lại với cờ O_TRUNC.
@@ -29,22 +49,3 @@ Chú ý 4: Hai cờ SET quyền đọc ghi cho file(permission) : S_IRUSR  và S
         --> Ta sẽ tự cấp quyền với các bit permission ở thư viện #include <sys/stat.h>
             VD, Ta sẽ cấp quyền trực tiếp đọc ghi cho file mà không cần thông qua cmd:
                 int fd = open(NAMEFILE, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR  );
-
-                    /*********************** ĐÁP ÁN BÀI 2 ***********************/    
-    fd1 = open(file, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
-        --> Tạo file với các cờ O_TRUNC đã nêu trên và cấp quyền đọc ghi cho file qua cờ S_IRUSR(cờ đọc)) và S_IWUSR(cờ ghi).
-    fd3 = open(file, O_RDWR);
-        --> Mở file với phiên làm việc với quyền đọc ghi cho file đã tạo
-        --> Chú ý: phiên làm việc là được đọc ghi, nhưng quyền cấp cho file không có đọc read và write thì cũng ko đọc ghi data được
-    write(fd1, "Hello,", 6);
-        --> Vì trong cùng một Process nên vẫn ghi data vào cuối file, nhưng file chưa có dữ liệu nào nên data là "Hello"
-    write(fd3, "world", 6);
-        --> Ghi chèn bắt đầu từ đầu file, "Hello" bị ghi chèn bời "world", nên data trong file là "Hello".
-    lseek(fd3, 0, SEEK_SET);
-        --> Chuyển con trỏ trong file về vị trí đầu tiên.
-    write(fd1, "HELLO,", 6);
-        -->Vì trong cùng một Process nên vẫn ghi data vào cuối file, nhưng file chưa có dữ liệu nào nên data là "worldHello"
-    write(fd3, "Gidday", 6);
-        --> Vì con trỏ lúc này với fd3 ở vị trí đầu file nên nó sẽ ghi chèn lên "world" và data sẽ là "GiddayHello"
-
-        --> Cuối cùng data trong file là "GiddayHello"

@@ -4,6 +4,13 @@
     rồi ghi một vài dữ  liệu vào file đó. Dữ liệu sẽ xuất hiện ở vị trí nào của file và tại sao lại như vậy?
 
 
+                    /*********************** TRẢ LỜI BÀI 1 ***********************/
+
+--> Dữ liệu sẽ xuất hiện ở vị trí nào của file và tại sao lại như vậy?
+    --> Dữ liệu được ghi vào file sẽ được ghi từ ở vị trí cuối cùng trong file.
+        --> Lý do là do việc sử dụng cờ O_APPEND --> Cờ O_APPEND sử dụng cho cho mục đích của nhiều Process nối thêm "văn bản" vào tệp.
+            --> Việc ta lseek() chỉ giúp ta đọc data bắt đầu ở vị trí là seek tới, chứ ghi data vào file vẫn ghi vào cuối file. 
+
 Chú ý 1: Khi mới tạo file và kết hợp luôn cờ O_APPEND, thì file sẽ có quyền -r--r-x--- 
         --> Không có quyền write
     --> Để khắc phục vấn đề này, ta phải tạo FILE trước với không sử dụng cở O_APPEND, rồi mở file lại với cờ O_APPEND.

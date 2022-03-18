@@ -44,7 +44,7 @@ void AddName(char *shmaddr) {
     printf("Data shareMemory with printf: %s va do dai %d\n", shmaddr, long_segement);
 }
 
-void sua_ten( char *shmaddr, const char *name)
+void modify_name( char *shmaddr, const char *name)
 {
     char newname[30] = {0};
     int leng_newname = 0;
@@ -78,7 +78,7 @@ void sua_ten( char *shmaddr, const char *name)
     }
 }
 
-void xoa_name(char *shmaddr, const char *name)
+void delete_name(char *shmaddr, const char *name)
 {
     char data[1000] = {0};
     char *first_dau_phay;
@@ -111,7 +111,7 @@ void xoa_name(char *shmaddr, const char *name)
 
 }
 
-void truy_xuat_value(char *str, const char *name)
+void read_value(char *str, const char *name)
 {
     char str_cpy[1024] = {0};
     char *value_fake;
@@ -146,7 +146,7 @@ int main()
     AddName(shmaddr);
     AddName(shmaddr);
     AddName(shmaddr);
-    sua_ten(shmaddr, "vietdz ");
-    xoa_name(shmaddr, "long");
-    truy_xuat_value(shmaddr, "ling");
+    modify_name(shmaddr, "vietdz ");
+    delete_name(shmaddr, "long");
+    read_value(shmaddr, "ling");
 }

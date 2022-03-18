@@ -7,11 +7,8 @@ các child process của nó thoát ra và parent process sau đó thực hiện
 
                 /*********************** ĐÁP ÁN BÀI 1 ***********************/ 
 
-Chú ý 1: khi tiến trình cha kết thúc trước tiến trình con   
-        --> Process con được gọi là tiến trình mồ côi(ORPHANCE).
-
-Chú ý 2: Nếu tiến trình con kết thúc trước tiến trình cha, thì tiến trình con sẽ là tiến trình zombie.
-        --> Nhưng khi tiến trình con kết thúc, thì tiến trình con cũng tự được giải phóng và thoát khỏi trạng thái zombie
+Ta có: Nếu tiến trình con kết thúc trước tiến trình cha, thì tiến trình con sẽ là tiến trình zombie.
+        --> Nhưng khi tiến trình cha kết thúc, thì tiến trình con cũng tự được giải phóng và thoát khỏi trạng thái zombie.
 
     --> Để chủ động ngăn chặn sinh ra tiến trình zombie, ta sử dụng hàm wait() để thu nhận tín hiệu kết thúc của tiến trình con.
         --> Ta kết hợp với hàm signal() để thực hiện điều này.
@@ -25,6 +22,8 @@ Chú ý 2: Nếu tiến trình con kết thúc trước tiến trình cha, thì 
             --> Khi nào tín hiệu con kết thúc, signal() sẽ nhảy vào hàm fun(), thực hiện lệnh wait() và giải phóng hoàn toàn 
                         tiến trình con.
         
+--> Vậy khi ta bỏ chận SIGCHLD thì khi tiến trình cha còn hoạt động, mà tiến trình con kết thúc thì sẽ sinh ra tiến trình zombie
 
-    --> Vậy khi ta bỏ chận SIGCHLD thì khi tiến trình con còn hoạt động, mà tiến trình con két thúc thì sẽ sinh ra tiến trình zombie
 
+Chú ý 1: khi tiến trình cha kết thúc trước tiến trình con   
+        --> Process con được gọi là tiến trình mồ côi(ORPHANCE).

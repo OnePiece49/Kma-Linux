@@ -9,3 +9,4 @@
         --> Nếu các tín hiệu standard signal đang được chờ xử lí, thì process sẽ không biết phải xử lí theo thứ tự hay cụ thể là signal nào. 
 
     Với Realtime signal sẽ cho các tín hiệu signal nhận được vào queue và xử lí sau đó theo thứ tự trong queue.
+            --> Cái này chưa nghiên cứu kĩ, sau cần đọc sau :)

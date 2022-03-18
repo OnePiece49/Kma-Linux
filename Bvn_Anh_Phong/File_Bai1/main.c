@@ -8,8 +8,8 @@
 int main()
 {
 	int fd = open(NAMEFILE, O_RDWR | O_CREAT | O_APPEND);
-	char *str = "Huy ngu";
-    //  lseek(fd, 4, SEEK_SET);
+	char *str = "Huyml123 ngu";
+    lseek(fd, 0, SEEK_SET);
     char buff[50] = {0};
     read(fd, buff, 50);
     printf("Data read fom FILE : %s\n", buff);

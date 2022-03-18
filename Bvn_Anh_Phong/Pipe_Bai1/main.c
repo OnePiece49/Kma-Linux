@@ -14,6 +14,7 @@ int main()
     int child_pid;
     char buff_fd1[100] = {0};
     char buff_fd2[100] = {0};
+    
     if(pipe(pipefd1) == -1) {
         printf("failed pipe 1\n");
     }
