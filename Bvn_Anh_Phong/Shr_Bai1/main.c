@@ -34,7 +34,7 @@ void AddName(char *shmaddr)
     char dau_phay[2] = ",";
     char string[20] = {0};
     strcpy(data, shmaddr);
-    //memset(shmaddr, 0, strlen(shmaddr) + 10);
+    memset(shmaddr, 0, strlen(shmaddr) + 10);
     
     newData(&name_value);
     sprintf(string, "%d", name_value.value);
@@ -46,7 +46,7 @@ void AddName(char *shmaddr)
 
     strcat(shmaddr, data);
     printf("Data shareMemory with for: ");
-    for(int i = 0; i < 200; i++) {
+    for (int i = 0; i < 200; i++) {
         printf("%c", shmaddr[i]);
     }
     printf("\n");
