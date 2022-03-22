@@ -23,5 +23,7 @@ int main()
             printf("n = %d\n",n);   //In ra man hinh
             sleep(1);
         }
-    } 
+    }
+
+    return 0; 
 }

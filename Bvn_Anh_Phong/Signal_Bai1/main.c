@@ -45,4 +45,5 @@ int main()
         printf("Hello ae wibu\n");
         sleep(3);
     }
+    return 0;
 }

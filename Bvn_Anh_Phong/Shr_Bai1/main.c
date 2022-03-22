@@ -152,4 +152,5 @@ int main()
     modify_name(shmaddr, "vietdz ");
     delete_name(shmaddr, "long");
     read_value(shmaddr, "linh");
+    return 0;
 }

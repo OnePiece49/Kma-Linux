@@ -19,5 +19,7 @@ int main()
     printf("fd = %d\n", fd);
     write(fd, "dcmm dup\n", 9);
     write(fd_coppy, "hello dup\n", 9);
+    
+    return 0;
 }
 
