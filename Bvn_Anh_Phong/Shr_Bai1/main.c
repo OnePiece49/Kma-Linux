@@ -34,7 +34,7 @@ void AddName(char *shmaddr)
     char dau_phay[2] = ",";
     char string[20] = {0};
     strcpy(data, shmaddr);
-    memset(shmaddr, 0, strlen(shmaddr) + 10);
+    //memset(shmaddr, 0, strlen(shmaddr) + 10);
     
     newData(&name_value);
     sprintf(string, "%d", name_value.value);
@@ -60,8 +60,8 @@ void modify_name(char *shmaddr, const char *name)
     char newname[30] = {0};
     char str_cpy[1024] = {0};
     char *first_hai_cham;
-    char *first = strstr(data, name);        //first: vị trí đầu tiên tìm kiếm được tên trùng với tên tìm kiếm 
-    memset(shmaddr, 0, strlen(shmaddr) + 50);
+    char *first = strstr(shmaddr, name);        //first: vị trí đầu tiên tìm kiếm được tên trùng với tên tìm kiếm 
+    //memset(shmaddr, 0, strlen(shmaddr) + 50);
 
     if (first != NULL) {
         first_hai_cham = strstr(first, ":");    // Vị trí ":" đầu tiên sau tên tìm đước
@@ -77,15 +77,15 @@ void modify_name(char *shmaddr, const char *name)
                 }
             }
 
-            memset(data, 0, strlen(data) + 10); // Xóa nội dung sau dấu ":"
+            memset(shmaddr, 0, strlen(shmaddr) + 10); // Xóa nội dung sau dấu ":"
             long_segement = long_segement - strlen(name) + strlen(newname);
             // for (int i = 0; i < (strlen(first_hai_cham) + 10); i++) { // Xóa nội dung sau dấu ":"
             //     first_hai_cham[i] = '\0';
             // }
 
             strcpy(first, newname);
-            strcat(data, str_cpy);
-            strcpy(shmaddr, data);
+            strcat(shmaddr, str_cpy);
+            strcpy(shmaddr, shmaddr);
             printf("Data after modify name: ");
             for (int i = 0; i < 100; i++) {
                 printf("%c", shmaddr[i]);
