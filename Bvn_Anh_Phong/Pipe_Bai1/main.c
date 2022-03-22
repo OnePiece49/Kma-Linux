@@ -15,15 +15,15 @@ int main()
     char buff_fd1[100] = {0};
     char buff_fd2[100] = {0};
     
-    if(pipe(pipefd1) == -1) {
+    if (pipe(pipefd1) == -1) {
         printf("failed pipe 1\n");
     }
-    if(pipe(pipefd2) == -1) {
+    if (pipe(pipefd2) == -1) {
         printf("failed pipe 1\n");
     }
 
     child_pid = fork();
-    if(child_pid == 0) {
+    if (child_pid == 0) {
         while (1) {
             memset(buff_fd1, 0, 100);
             memset(buff_fd2, 0, 100);
