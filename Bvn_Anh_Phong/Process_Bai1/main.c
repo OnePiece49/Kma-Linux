@@ -15,20 +15,19 @@ int main()
 {
     pid_t child_pid = fork();
     
-    if(child_pid == 0) {
+    if (child_pid == 0) {
         printf("I/m Process child %d\n", getpid());
-    } 
-    else if(child_pid > 0) {
+    } else if (child_pid > 0) {
         printf("I'm process parent %d\n", getppid());
         signal(SIGCHLD, func);
-        while (1)
-        {
+        while (1) {
             printf("I'm parent\n");
             sleep(2);
         }
-    } 
-    else {
+    } else {
         printf("failed to make fork\n");
         return 1;
     }
+
+    return 0;
 }

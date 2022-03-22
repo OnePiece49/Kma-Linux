@@ -24,7 +24,7 @@ int main()
 
     child_pid = fork();
     if(child_pid == 0) {
-        while(1) {
+        while (1) {
             memset(buff_fd1, 0, 100);
             memset(buff_fd2, 0, 100);
             close(pipefd1[0]);
@@ -40,9 +40,8 @@ int main()
             read(pipefd2[0], buff_fd2, 100);
             printf("Data receive from child : %s\n", buff_fd2);
         }
-    }
-    else if(child_pid > 0){
-        while(1) {
+    } else if(child_pid > 0) {
+        while (1) {
             memset(buff_fd1, 0, 100);
             memset(buff_fd2, 0, 100);
             close(pipefd1[1]);
@@ -54,8 +53,7 @@ int main()
             }
             write(pipefd2[1], buff_fd1, strlen(buff_fd1));
         }
-    }
-    else {
+    } else {
         printf("failed to make fork()\n");
     }
 }

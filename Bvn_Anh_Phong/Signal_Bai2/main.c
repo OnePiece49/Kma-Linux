@@ -12,7 +12,7 @@ int main()
     int fd = open(NAME_FILE, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
     printf("fd = %d\n", fd);
     //close(0);
-    int fd_coppy = dup2(fd, 0); //Tai sao ko nhap duoc data ?? Chua biet, sau hoi a phong
+    int fd_coppy = dup2(fd, 0); 
     printf("Nhap data : ");
     scanf("%s", str);
     printf("fd_coppy = %d \n", fd_coppy);
